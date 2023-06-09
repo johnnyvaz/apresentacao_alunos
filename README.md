@@ -1,30 +1,20 @@
-# Astro Starter Kit: Portfolio
+# Apresentação Alunos
 
-```
-npm create astro@latest -- --template portfolio
-```
+Repositório para tarefa da primeira aula dos alunos do curso de Análise e Desenvolvimento de Sistemas
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/portfolio/devcontainer.json)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d21ae247-3008-4bfc-ab47-962eeddb0141/deploy-status)](https://app.netlify.com/sites/curso-ads/deploys)
 
 
-![portfolio](https://user-images.githubusercontent.com/357379/210779178-a98f0fb7-6b1a-4068-894c-8e1403e26654.jpg)
+## 🧞 Comandos
 
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
+Todos os comandos são executados a partir da raiz do projeto, em um terminal:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
+| `npm install`             | Instala as dependencias
+| `npm run dev`             | Inicia em modo desenvolvimento no link `localhost:3000`      |
+| `npm run build`           | Constrói a versão de produção na pasta`./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm run astro ...`       | Executa o CLI do astro, como: `astro add`, `astro check` |
+| `npm run astro -- --help` | Busca o help dos comandos do Astro  |
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

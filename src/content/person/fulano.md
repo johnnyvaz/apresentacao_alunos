@@ -1,7 +1,7 @@
 ---
 title: Fulano
 name: nome do aluno
-publishDate: 2020-03-02 00:00:00
+publishDate: 2023-06-09 00:00:00
 img: /assets/fulano.png
 img_alt: Imagem do fulano
 description: |
