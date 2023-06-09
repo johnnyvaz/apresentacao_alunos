@@ -18,3 +18,6 @@ Todos os comandos são executados a partir da raiz do projeto, em um terminal:
 | `npm run astro ...`       | Executa o CLI do astro, como: `astro add`, `astro check` |
 | `npm run astro -- --help` | Busca o help dos comandos do Astro  |
 
+## Link do Site
+
+https://ads.cod2d.com.br/
