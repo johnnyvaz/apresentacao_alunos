@@ -1,0 +1,220 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// import ContactCTA from "../../components/ContactCTA.astro";
+import Hero from "../../components/Hero.astro";
+import Pill from "../../components/Pill.astro";
+import Icon, { Props as IconProps } from '../../components/Icon.astro';
+
+interface Props {
+	entry: CollectionEntry<"person">;
+}
+
+// This is a dynamic route that generates a page for every Markdown file in src/content/
+// Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
+// https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
+export async function getStaticPaths() {
+	const person = await getCollection("person");
+	return person.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+/** Icon links to social media — edit these with links to your profiles! */
+const iconLinks: { label: string; href: string; icon: IconProps['icon'] }[] = [
+	{ label: 'GitHub', href: 'https://github.com/me', icon: 'github-logo' },
+	{ label: 'Instagram', href: 'https://instagram.com/me', icon: 'instagram-logo' },
+];
+
+---
+
+<BaseLayout title={entry.data.name} description={entry.data.description}>
+	<div class="stack gap-20 lg:gap-48">
+		<div class="stack gap-20 lg:gap-48">
+			<div class="wrapper stack gap-8 lg:gap-20">
+				<header class="hero">
+					<Hero name={entry.data.name} align="start">
+						<div class="details">
+							<div class="roles">
+								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
+							</div>
+							<p class="description">{entry.data.description}</p>
+						</div>
+						<div class="socials">
+							{
+								iconLinks.map(({ href, icon, label }) => (
+									<a href={href} class="social">
+										<span class="sr-only">{label}</span>
+										<Icon icon={icon} />
+									</a>
+								))
+							}
+						</div>
+					</Hero>
+
+					<img
+						alt={entry.data.img_alt}
+						width="480"
+						height="620"
+						src={entry.data.img}
+					/>
+				</header>
+				<div class="content">
+					<Content />
+				</div>
+			</div>
+		</div>
+
+		<!-- <ContactCTA /> -->
+	</div>
+</BaseLayout>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.roles {
+		display: none;
+	}
+
+	.hero img {
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
+		object-position: top;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	@media (min-width: 50em) {
+		.hero {
+			display: grid;
+			grid-template-columns: 6fr 4fr;
+			padding-inline: 2.5rem;
+			gap: 3.75rem;
+		}
+
+		.roles {
+			margin-top: 0.5rem;
+			display: flex;
+			gap: 0.5rem;
+		}
+
+		.hero img {
+			aspect-ratio: 3 / 4;
+			border-radius: 4.5rem;
+			object-fit: cover;
+		}
+	}
+
+	/* ====================================================== */
+
+	.section {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.with-background {
+		position: relative;
+	}
+
+	.with-background::before {
+		--hero-bg: var(--bg-image-subtle-2);
+
+		content: "";
+		position: absolute;
+		pointer-events: none;
+		left: 50%;
+		width: 100vw;
+		aspect-ratio: calc(2.25 / var(--bg-scale));
+		top: 0;
+		transform: translateY(-75%) translateX(-50%);
+		background: url("/assets/backgrounds/noise.png") top center/220px repeat,
+			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+			var(--gray-999);
+		background-blend-mode: overlay, normal, normal, normal;
+		mix-blend-mode: var(--bg-blend-mode);
+		z-index: -1;
+	}
+
+	.with-background.bg-variant::before {
+		--hero-bg: var(--bg-image-subtle-1);
+	}
+
+	.section-header {
+		justify-self: center;
+		text-align: center;
+		max-width: 50ch;
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+
+	.section-header h3 {
+		font-size: var(--text-2xl);
+	}
+
+	@media (min-width: 50em) {
+		.section {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-areas: "header header header header" "gallery gallery gallery gallery";
+			gap: 5rem;
+		}
+
+		.section.with-cta {
+			grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
+		}
+
+		.section-header {
+			grid-area: header;
+			font-size: var(--text-lg);
+		}
+
+		.section-header h3 {
+			font-size: var(--text-4xl);
+		}
+
+		.with-cta .section-header {
+			justify-self: flex-start;
+			text-align: left;
+		}
+
+		.gallery {
+			grid-area: gallery;
+		}
+
+		.cta {
+			grid-area: cta;
+		}
+	}
+
+	/* ====================================================== */
+
+	.mention-card {
+		display: flex;
+		height: 7rem;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		color: var(--gray-300);
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+	}
+
+	@media (min-width: 50em) {
+		.mention-card {
+			border-radius: 1.5rem;
+			height: 9.5rem;
+		}
+	}
+</style>
