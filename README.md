@@ -25,6 +25,7 @@ Todos os comandos são executados a partir da raiz do projeto, em um terminal:
 | `git pull`              | Atualiza local com as últimas alterações do repositório online |
 | `git checkout -b nome`  | Alterna de Branch, o (-b) já cria um novo          |
 | `git push`              | Empurra alterações para o repositório online         |
+| `git commit -m "texto" `| Empurra alterações para o repositório online         |
 | `git status`            | Verifica se tem alterações para enviar ou commitar |
 
 
